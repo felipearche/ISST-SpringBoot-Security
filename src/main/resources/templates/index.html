@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><title>Inicio</title></head>
+<body>
+    <h1>Hola mundo!</h1>
+
+    <!-- Solo para usuarios autenticados: muestra nombre y rol -->
+    <div sec:authorize="isAuthenticated()">
+        <p>Usuario: <span sec:authentication="name"></span></p>
+        <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+        <a href="/logout">Logout</a><br/>
+        <a href="/todos" sec:authorize="isAuthenticated()">Todos</a><br/>
+        <a href="/alumnos" sec:authorize="hasRole('ALUM')">Alumnos</a><br/>
+        <a href="/profesores" sec:authorize="hasRole('PROF')">Profesores</a><br/>
+    </div>
+
+    <!-- Solo para usuarios NO autenticados -->
+    <div sec:authorize="isAnonymous()">
+        <a href="/login">Login</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ <head></head>
+ <body>
+    <div sec:authorize="isAuthenticated()">
+     <span sec:authentication="name"></span> <!--Nombre de usuario autenticado-->
+     <span sec:authentication="principal.authorities"></span><!--Roles-->
+    </div>
+    <div sec:authorize="isAnonymous">Usuario anónimo</div>  
+    /alumnos/tema1    
+ </body>
+</html> 
